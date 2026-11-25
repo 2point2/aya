@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>For Ayanda 💌</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: grid;
+    place-items: center;
+    padding: 24px;
+    overflow-x: hidden;
+    background: radial-gradient(circle at 20% 15%, #3a0a4d 0%, #1a0327 45%, #0b0014 100%);
+    font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    color: #fff;
+  }
+
+  /* ---------- floating hearts background ---------- */
+  #hearts {
+    position: fixed;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .heart {
+    position: absolute;
+    bottom: -60px;
+    animation: floatUp linear forwards;
+    opacity: 0;
+    will-change: transform, opacity;
+  }
+  @keyframes floatUp {
+    0%   { transform: translateY(0) scale(0.5) rotate(0deg);   opacity: 0; }
+    10%  { opacity: 0.9; }
+    90%  { opacity: 0.7; }
+    100% { transform: translateY(-115vh) scale(1.1) rotate(360deg); opacity: 0; }
+  }
+
+  /* ---------- card ---------- */
+  .card {
+    position: relative;
+    z-index: 2;
+    width: min(560px, 100%);
+    padding: 44px 34px;
+    text-align: center;
+    border-radius: 26px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 24px 70px rgba(255, 20, 120, 0.25),
+                inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    animation: cardIn 1.2s cubic-bezier(.2,.8,.25,1) both;
+  }
+  @keyframes cardIn {
+    from { opacity: 0; transform: translateY(28px) scale(0.96); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+
+  .to {
+    font-size: 0.85rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #ffb3d1;
+    opacity: 0.85;
+    margin-bottom: 14px;
+  }
+
+  /* ---------- glowing heartbeat title ---------- */
+  .title {
+    font-size: clamp(2.2rem, 9vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: 1px;
+    background: linear-gradient(90deg, #ff4d94, #ff9ec4, #fff0f6, #ff4d94);
+    background-size: 300% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
+    animation: shine 5s linear infinite, beat 1.6s ease-in-out infinite;
+  }
+  @keyframes shine {
+    from { background-position: 0% center; }
+    to   { background-position: 300% center; }
+  }
+  @keyframes beat {
+    0%, 100% { transform: scale(1); }
+    14%      { transform: scale(1.07); }
+    28%      { transform: scale(1); }
+    42%      { transform: scale(1.07); }
+    70%      { transform: scale(1); }
+  }
+
+  /* ---------- typewriter line ---------- */
+  .typed-wrap {
+    min-height: 3.4em;
+    margin: 22px 0 26px;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    color: #f2e3f7;
+    opacity: 0.92;
+  }
+  .cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1.05em;
+    margin-left: 2px;
+    vertical-align: -0.15em;
+    background: #ff6fae;
+    animation: blink 0.9s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  /* ---------- button ---------- */
+  .btn {
+    position: relative;
+    padding: 14px 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #4a0124;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff9ec4, #ff5f9e 55%, #ffb3d1);
+    box-shadow: 0 10px 26px rgba(255, 60, 130, 0.45);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+  }
+  .btn:hover  { transform: translateY(-2px) scale(1.04); box-shadow: 0 14px 34px rgba(255,60,130,.6); }
+  .btn:active { transform: translateY(0) scale(0.98); }
+
+  /* ---------- hidden love note ---------- */
+  .hidden-msg {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease, opacity 0.6s ease, margin-top 0.5s ease;
+    font-size: 0.98rem;
+    line-height: 1.75;
+    color: #f6e7fb;
+  }
+  .hidden-msg.show {
+    max-height: 620px;
+    opacity: 1;
+    margin-top: 26px;
+  }
+  .hidden-msg p { margin-bottom: 14px; }
+  .hidden-msg .signature {
+    font-style: italic;
+    color: #ffb3d1;
+    margin-top: 6px;
+  }
+
+  /* ---------- heart burst ---------- */
+  .burst-heart {
+    position: fixed;
+    z-index: 20;
+    pointer-events: none;
+    font-size: 22px;
+    animation: burst 1s ease-out forwards;
+  }
+  @keyframes burst {
+    0%   { transform: translate(-50%, -50%) scale(0.3); opacity: 1; }
+    100% { transform: translate(calc(-50% + var(--x)), calc(-50% + var(--y))) scale(1.4);
+           opacity: 0; }
+  }
+
+  @media (max-width: 420px) {
+    .card { padding: 34px 22px; border-radius: 20px; }
+  }
+</style>
+</head>
+<body>
+
+  <div id="hearts"></div>
+
+  <main class="card">
+    <!-- ✏️ Name updated to Ayanda -->
+    <p class="to">To: Ayanda</p>
+
+    <h1 class="title">I Love You</h1>
+
+    <p class="typed-wrap">
+      <span id="typed"></span><span class="cursor"></span>
+    </p>
+
+    <button class="btn" id="btn">Open my heart 💗</button>
+
+    <div class="hidden-msg" id="hidden">
+      <!-- ✏️ Personal note for Ayanda -->
+      <p>Ayanda, I love the way you laugh, the way your eyes light up when you talk
+         about something you care about, and the way you make everyone around you
+         feel like they matter.</p>
+      <p>I don't know where this road goes — but I know I'd really like to find
+         out with you. Maybe over coffee sometime? ☕</p>
+      <p class="signature">— Yours (if you'll have me) 💌</p>
+    </div>
+  </main>
+
+<script>
+  /* ================= floating hearts ================= */
+  const heartsLayer = document.getElementById("hearts");
+  const EMOJIS = ["❤️", "💖", "💕", "💗", "💘", "💞", "🩷"];
+
+  function spawnHeart() {
+    const h = document.createElement("div");
+    h.className = "heart";
+    h.textContent = EMOJIS[Math.floor(Math.random() * EMOJIS.length)];
+    h.style.left = Math.random() * 100 + "vw";
+    h.style.fontSize = 14 + Math.random() * 26 + "px";
+    const duration = 7 + Math.random() * 6;
+    h.style.animationDuration = duration + "s";
+    heartsLayer.appendChild(h);
+    setTimeout(() => h.remove(), duration * 1000);
+  }
+
+  setInterval(spawnHeart, 450);
+  for (let i = 0; i < 14; i++) setTimeout(spawnHeart, i * 160);
+
+  /* ================= typewriter ================= */
+  // ✏️ Message now includes Ayanda's name
+  const MESSAGE =
+    "Ayanda, somewhere between our first hello and now, you quietly became my favourite part of every day. 💫";
+
+  const typedEl = document.getElementById("typed");
+  let index = 0;
+
+  function type() {
+    if (index <= MESSAGE.length) {
+      typedEl.textContent = MESSAGE.slice(0, index);
+      index++;
+      setTimeout(type, 55);
+    }
+  }
+  setTimeout(type, 1400);
+
+  /* ================= reveal button ================= */
+  const btn = document.getElementById("btn");
+  const hidden = document.getElementById("hidden");
+
+  btn.addEventListener("click", () => {
+    const isOpen = hidden.classList.toggle("show");
+    btn.textContent = isOpen ? "Close my heart 💌" : "Open my heart 💗";
+    if (isOpen) burstHearts();
+  });
+
+  /* ================= heart burst ================= */
+  function burstHearts() {
+    const rect = btn.getBoundingClientRect();
+    const cx = rect.left + rect.width / 2;
+    const cy = rect.top + rect.height / 2;
+
+    for (let i = 0; i < 20; i++) {
+      const h = document.createElement("div");
+      h.className = "burst-heart";
+      h.textContent = EMOJIS[i % EMOJIS.length];
+      h.style.left = cx + "px";
+      h.style.top = cy + "px";
+
+      const angle = Math.random() * Math.PI * 2;
+      const distance = 90 + Math.random() * 180;
+      h.style.setProperty("--x", Math.cos(angle) * distance + "px");
+      h.style.setProperty("--y", Math.sin(angle) * distance + "px");
+      h.style.fontSize = 16 + Math.random() * 14 + "px";
+
+      document.body.appendChild(h);
+      setTimeout(() => h.remove(), 1000);
+    }
+  }
+</script>
+</body>
+</html>
